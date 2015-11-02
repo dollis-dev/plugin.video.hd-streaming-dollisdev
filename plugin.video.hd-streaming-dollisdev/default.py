@@ -30,7 +30,7 @@ settings = xbmcaddon.Addon("plugin.video.hd-streaming-dollisdev");
 my_addon = xbmcaddon.Addon('plugin.video.hd-streaming-dollisdev')
 addon_path = my_addon.getAddonInfo('path') + '/'
 handle = int(sys.argv[1])
-xbmcplugin.setContent(int(sys.argv[1]), 'tv shows')
+xbmcplugin.setContent(int(sys.argv[1]), 'movies')
 
 def parameters_string_to_dict(parameters):    
     paramDict = {}
