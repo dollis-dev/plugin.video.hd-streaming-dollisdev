@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.hd-streaming-dollisdev"
        name="HD Streaming"
-       version="4.3"
+       version="4.4"
        provider-name="HD Streaming - Modded by DollisDev">
   <extension point="xbmc.python.pluginsource"
              library="default.py">
@@ -13,7 +13,7 @@
     <platform>all</platform>
     <license>GPL 2.0</license>
   </extension>
-	<extension point="xbmc.addon.repository" name="DollisDev Kodi Add-ons">
+	<extension point="xbmc.addon.repository">
 		<info compressed="false">https://raw.githubusercontent.com/dollis-dev/kodi-repo/master/addons.xml</info>
 		<checksum>https://raw.githubusercontent.com/dollis-dev/kodi-repo/master/addons.xml.md5</checksum>
 		<datadir zip="true">https://github.com/dollis-dev/kodi-repo/raw/master/</datadir>
