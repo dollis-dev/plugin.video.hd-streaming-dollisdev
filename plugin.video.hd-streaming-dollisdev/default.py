@@ -180,9 +180,9 @@ def getepginfo(picon, epg, name):
         except (AttributeError, TypeError):
             description = 'No description available'
         try:
-            li = xbmcgui.ListItem(name + ' - ' + title.text, iconImage=picon_path + picon + '.png', thumbnailImage=picon_path + picon + '.png')
+            li = xbmcgui.ListItem(name.title() + ' - ' + title.text, iconImage=picon_path + picon + '.png', thumbnailImage=picon_path + picon + '.png')
         except (AttributeError, TypeError):
-            li = xbmcgui.ListItem(name + ' - ' + title, iconImage=picon_path + picon + '.png', thumbnailImage=picon_path + picon + '.png')
+            li = xbmcgui.ListItem(name.title() + ' - ' + title, iconImage=picon_path + picon + '.png', thumbnailImage=picon_path + picon + '.png')
         try:
             li.setProperty('fanart_image', img["src"])
         except (AttributeError, TypeError):
@@ -206,7 +206,7 @@ def getepginfo(picon, epg, name):
         elif name == 'Racing UK':
             URL = "http://www.locatetv.com/uk/listings/racing-uk"
         else:
-            li = xbmcgui.ListItem(name, iconImage=picon_path + picon + '.png', thumbnailImage=picon_path + picon + '.png')
+            li = xbmcgui.ListItem(name.title(), iconImage=picon_path + picon + '.png', thumbnailImage=picon_path + picon + '.png')
             return li
         soup = BeautifulSoup(urllib2.urlopen(URL).read(), 'html.parser')
         div = soup.find('li', attrs={'class' : 'schedTv'})
@@ -218,7 +218,7 @@ def getepginfo(picon, epg, name):
             description = div.p.text 
         except (AttributeError, TypeError):
             description = 'No description available'
-        li = xbmcgui.ListItem(name + ' - ' + title, iconImage=picon_path + picon + '.png', thumbnailImage=picon_path + picon + '.png')
+        li = xbmcgui.ListItem(name.title() + ' - ' + title, iconImage=picon_path + picon + '.png', thumbnailImage=picon_path + picon + '.png')
         try:
             li.setProperty('fanart_image', div.a.img['alt'].replace("/mid/", "/large/", 1))
         except (AttributeError, TypeError):
@@ -226,7 +226,7 @@ def getepginfo(picon, epg, name):
         details={'plot'   : description }
         li.setInfo('video', details)
     else:
-        li = xbmcgui.ListItem(name, iconImage=picon_path + picon + '.png', thumbnailImage=picon_path + picon + '.png')
+        li = xbmcgui.ListItem(name.title(), iconImage=picon_path + picon + '.png', thumbnailImage=picon_path + picon + '.png')
     return li
     
 def addDirectoryItem(picon, epg, name, isPlayable=False, isFolder=True, parameters={}):
