@@ -29,7 +29,7 @@ icon_path = os.path.join(xbmc.translatePath('special://profile/addon_data'), 'pl
 settings = xbmcaddon.Addon("plugin.video.hd-streaming-dollisdev");
 my_addon = xbmcaddon.Addon('plugin.video.hd-streaming-dollisdev')
 addon_path = my_addon.getAddonInfo('path') + '/'
-picon_path = 'https://github.com/dollis-dev/plugin.video.hd-streaming-dollisdev/raw/master/plugin.video.hd-streaming-dollisdev/'
+picon_path = 'https://github.com/dollis-dev/kodi-repo-resources/raw/master/'
 handle = int(sys.argv[1])
 xbmcplugin.setContent(int(sys.argv[1]), 'movies')
 
