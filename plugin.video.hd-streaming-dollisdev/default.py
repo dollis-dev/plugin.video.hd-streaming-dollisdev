@@ -218,7 +218,7 @@ def getepginfo(picon, epg, name):
             description = div.p.text 
         except (AttributeError, TypeError):
             description = 'No description available'
-        li = xbmcgui.ListItem(name.title() + ' - ' + title, iconImage=picon_path + picon + '.png', thumbnailImage=picon_path + picon + '.png')
+        li = xbmcgui.ListItem(name + ' - ' + title, iconImage=picon_path + picon + '.png', thumbnailImage=picon_path + picon + '.png')
         try:
             li.setProperty('fanart_image', div.a.img['alt'].replace("/mid/", "/large/", 1))
         except (AttributeError, TypeError):
@@ -226,7 +226,7 @@ def getepginfo(picon, epg, name):
         details={'plot'   : description }
         li.setInfo('video', details)
     else:
-        li = xbmcgui.ListItem(name.title(), iconImage=picon_path + picon + '.png', thumbnailImage=picon_path + picon + '.png')
+        li = xbmcgui.ListItem(name, iconImage=picon_path + picon + '.png', thumbnailImage=picon_path + picon + '.png')
     return li
     
 def addDirectoryItem(picon, epg, name, isPlayable=False, isFolder=True, parameters={}):
