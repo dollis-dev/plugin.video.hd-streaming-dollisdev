@@ -29,6 +29,7 @@ icon_path = os.path.join(xbmc.translatePath('special://profile/addon_data'), 'pl
 settings = xbmcaddon.Addon("plugin.video.hd-streaming-dollisdev");
 my_addon = xbmcaddon.Addon('plugin.video.hd-streaming-dollisdev')
 addon_path = my_addon.getAddonInfo('path') + '/'
+picon_path = 'https://github.com/dollis-dev/plugin.video.hd-streaming-dollisdev/raw/master/plugin.video.hd-streaming-dollisdev/'
 handle = int(sys.argv[1])
 xbmcplugin.setContent(int(sys.argv[1]), 'movies')
 
@@ -163,8 +164,8 @@ def get_upcoming_schedule():
 def getepginfo(picon, epg, name):
     channel = name.rsplit(None, 1)[-1]
     if epg == 'skip':
-        li = xbmcgui.ListItem(name, iconImage=addon_path + picon + '.png', thumbnailImage=addon_path + picon + '.png')
-        li.setProperty('fanart_image', addon_path + picon + '.png')
+        li = xbmcgui.ListItem(name, iconImage=picon_path + picon + '.png', thumbnailImage=picon_path + picon + '.png')
+        li.setProperty('fanart_image', picon_path + picon + '.png')
         return li
     if 'Sky Sports' in name:
         URL = "http://www.skysports.com/watch/sky-sports-" + channel
@@ -179,13 +180,13 @@ def getepginfo(picon, epg, name):
         except (AttributeError, TypeError):
             description = 'No description available'
         try:
-            li = xbmcgui.ListItem(name + ' - ' + title.text, iconImage=addon_path + picon + '.png', thumbnailImage=addon_path + picon + '.png')
+            li = xbmcgui.ListItem(name + ' - ' + title.text, iconImage=picon_path + picon + '.png', thumbnailImage=picon_path + picon + '.png')
         except (AttributeError, TypeError):
-            li = xbmcgui.ListItem(name + ' - ' + title, iconImage=addon_path + picon + '.png', thumbnailImage=addon_path + picon + '.png')
+            li = xbmcgui.ListItem(name + ' - ' + title, iconImage=picon_path + picon + '.png', thumbnailImage=picon_path + picon + '.png')
         try:
             li.setProperty('fanart_image', img["src"])
         except (AttributeError, TypeError):
-            li.setProperty('fanart_image', addon_path + picon + '.png')
+            li.setProperty('fanart_image', picon_path + picon + '.png')
         try:
             details={'plot'   : description.text.replace('Also in HD', '')}
         except (AttributeError, TypeError):
@@ -205,7 +206,7 @@ def getepginfo(picon, epg, name):
         elif name == 'Racing UK':
             URL = "http://www.locatetv.com/uk/listings/racing-uk"
         else:
-            li = xbmcgui.ListItem(name, iconImage=addon_path + picon + '.png', thumbnailImage=addon_path + picon + '.png')
+            li = xbmcgui.ListItem(name, iconImage=picon_path + picon + '.png', thumbnailImage=picon_path + picon + '.png')
             return li
         soup = BeautifulSoup(urllib2.urlopen(URL).read(), 'html.parser')
         div = soup.find('li', attrs={'class' : 'schedTv'})
@@ -217,15 +218,15 @@ def getepginfo(picon, epg, name):
             description = div.p.text 
         except (AttributeError, TypeError):
             description = 'No description available'
-        li = xbmcgui.ListItem(name + ' - ' + title, iconImage=addon_path + picon + '.png', thumbnailImage=addon_path + picon + '.png')
+        li = xbmcgui.ListItem(name + ' - ' + title, iconImage=picon_path + picon + '.png', thumbnailImage=picon_path + picon + '.png')
         try:
             li.setProperty('fanart_image', div.a.img['alt'].replace("/mid/", "/large/", 1))
         except (AttributeError, TypeError):
-            li.setProperty('fanart_image', addon_path + picon + '.png')
+            li.setProperty('fanart_image', picon_path + picon + '.png')
         details={'plot'   : description }
         li.setInfo('video', details)
     else:
-        li = xbmcgui.ListItem(name, iconImage=addon_path + picon + '.png', thumbnailImage=addon_path + picon + '.png')
+        li = xbmcgui.ListItem(name, iconImage=picon_path + picon + '.png', thumbnailImage=picon_path + picon + '.png')
     return li
     
 def addDirectoryItem(picon, epg, name, isPlayable=False, isFolder=True, parameters={}):
@@ -258,11 +259,11 @@ def addDirectoryItemRoot(name, picon, isPlayable=False, isFolder=True, parameter
 
 def show_root_menu():
     if login():
-        addDirectoryItemRoot('Live Streams - HD', addon_path + 'hd.png', parameters={ PARAMETER_KEY_MODE: MODE_LIVE_STREAMS_HD }, isFolder=True)
-        addDirectoryItemRoot('Live Streams - SD', addon_path + 'sd.png', parameters={ PARAMETER_KEY_MODE: MODE_LIVE_STREAMS_SD }, isFolder=True)
-        addDirectoryItemRoot('Live Streams - HD (Legacy Mode)', addon_path + 'hd.png', parameters={ PARAMETER_KEY_MODE: MODE_LIVE_STREAMS_HD_LEGACY }, isFolder=True)
-        addDirectoryItemRoot('Live Streams - SD (Legacy Mode)', addon_path + 'sd.png', parameters={ PARAMETER_KEY_MODE: MODE_LIVE_STREAMS_SD_LEGACY }, isFolder=True)
-        addDirectoryItemRoot(UPCOMING, addon_path + 'Upcoming.png', parameters={ PARAMETER_KEY_MODE: MODE_UPCOMING }, isFolder=True)
+        addDirectoryItemRoot('Live Streams - HD', picon_path + 'hd.png', parameters={ PARAMETER_KEY_MODE: MODE_LIVE_STREAMS_HD }, isFolder=True)
+        addDirectoryItemRoot('Live Streams - SD', picon_path + 'sd.png', parameters={ PARAMETER_KEY_MODE: MODE_LIVE_STREAMS_SD }, isFolder=True)
+        addDirectoryItemRoot('Live Streams - HD (Legacy Mode)', picon_path + 'hd.png', parameters={ PARAMETER_KEY_MODE: MODE_LIVE_STREAMS_HD_LEGACY }, isFolder=True)
+        addDirectoryItemRoot('Live Streams - SD (Legacy Mode)', picon_path + 'sd.png', parameters={ PARAMETER_KEY_MODE: MODE_LIVE_STREAMS_SD_LEGACY }, isFolder=True)
+        addDirectoryItemRoot(UPCOMING, picon_path + 'Upcoming.png', parameters={ PARAMETER_KEY_MODE: MODE_UPCOMING }, isFolder=True)
         favorite_team_game()
         xbmcplugin.endOfDirectory(handle=handle, succeeded=True)
     else:
@@ -305,7 +306,7 @@ def favorite_team_game():
             path = 'channel' + row[0][5:]
             name = row[1]
             stream = get_rtmp_url(path)
-            addDirectoryItemRoot(name, addon_path + 'icon.png', isPlayable=True, isFolder=False, parameters={ PARAMETER_KEY_MODE: MODE_PLAY, 'url':stream,'name':name })
+            addDirectoryItemRoot(name, picon_path + 'icon.png', isPlayable=True, isFolder=False, parameters={ PARAMETER_KEY_MODE: MODE_PLAY, 'url':stream,'name':name })
             return
     return
     
