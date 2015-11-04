@@ -218,6 +218,8 @@ def getepginfo(picon, epg, name):
             description = div.p.text 
         except (AttributeError, TypeError):
             description = 'No description available'
+        if 'europe' in name:
+            name = 'BT Sport Europe'
         li = xbmcgui.ListItem(name + ' - ' + title, iconImage=picon_path + picon + '.png', thumbnailImage=picon_path + picon + '.png')
         try:
             li.setProperty('fanart_image', div.a.img['alt'].replace("/mid/", "/large/", 1))
